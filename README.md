@@ -11,62 +11,66 @@
 | last_name        | string | null: false |
 | family_name_kana | string | null: false |
 | last_name_kana   | string | null: false |
-| birthday         | date   | null: false |
+| birth_year       | string | null: false |
+| birth_month      | string | null: false |
+| birth_day        | string | null: false |
 
 ### Association
 
 - has_many : items
 - has_many : purchaser
+- has_one : card
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| name         | string     | null: false                    |
-| description  | text       | null: false                    |
-| category_id  | integer    | null: false                    |
-| status_id    | integer    | null: false                    |
-| postage_id   | integer    | null: false                    |
-| prefecture_id| integer    | null: false                    |
-| days_id      | integer    | null: false                    |
-| users_id     | references | null: false, foreign_key: true |
+| Column       | Type   | Options     |
+| ------------ | ------ | ------------|
+| image        | string | null: false |
+| name         | string | null: false |
+| description  | string | null: false |
+| category     | string | null: false |
+| status       | string | null: false |
+| postage      | string | null: false |
+| prefecture   | string | null: false |
+| birth_year   | string | null: false |
+| birth_month  | string | null: false |
+| birth_day    | string | null: false |
 
 ### Association
 
 -belongs_to :users
 -has_one : purchaser
--belongs_to :category
--belongs_to :status
--belongs_to :postage
--belongs_to :prefecture
--belongs_to :days
 
-## addressesテーブル
+## purchaserテーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| post_cord        | string     | null: false                    |
-| prefecture_id    | string     | null: false                    |
-| city             | string     | null: false                    |
-| address1         | string     | null: false                    |
-| address2         | string     | null: false                    |
-| building_name    | string     |                                |
-| phone_number     | string     | null: false                    |
-| purchaser_id     | references | null: false, foreign_key: true |
-
-### Association
-
--belongs_to : purchaser
--belongs_to : prefecture
-
-## purchaser テーブル
-
-| Colum    | Type       | Options                       |
-| -------- | ---------- | ----------------------------- |
-| items_id | references |null: false, foreign_key: true |
-| users_id | references |null: false, foreign_key: true |
+| Column           | Type   | Options     |
+| ---------------- | ------ | ------------|
+| family_name      | string | null: false |
+| last_name        | string | null: false |
+| family_name_kana | string | null: false |
+| last_name_kana   | string | null: false |
+| post_cord        | string | null: false |
+| prefecture       | string | null: false |
+| city             | string | null: false |
+| address1         | string | null: false |
+| address2         | string | null: false |
+| building_name    | string | null: false |
+| phone_number     | string | null: false |
+| users_id         | string | null: false |
+| item             | string | null: false |
 
 ### Association
 
--has_one : addresses
+-belongs_to : users
 -belongs_to : items
+
+## cardテーブル
+
+| Column    | Type   | Options     |
+| --------- | ------ | ------------|
+| users_id  | string | null: false |
+| card_id   | string | null: false |
+
+### Association
+
+-belongs_to : users

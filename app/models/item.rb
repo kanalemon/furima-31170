@@ -21,5 +21,5 @@ class Item < ApplicationRecord
     validates :image 
   end
   
-  validates :price, presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/}
+  validates :price, presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
 end

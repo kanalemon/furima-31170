@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :day
-  
+
   with_options presence: true do
     validates :name
     validates :description
@@ -18,8 +18,8 @@ class Item < ApplicationRecord
     validates :postage_id
     validates :prefecture_id
     validates :days_id
-    validates :image 
+    validates :image
   end
-  
-  validates :price, presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
+
+  validates :price, presence: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
 end

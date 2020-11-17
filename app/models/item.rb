@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to_active_hash :postage
   belongs_to_active_hash :prefecture
-  belongs_to_active_hash :day
+  belongs_to_active_hash :days
 
   with_options presence: true do
     validates :name

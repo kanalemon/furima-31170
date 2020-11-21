@@ -3,14 +3,12 @@ class Order
   attr_accessor :item_id, :user_id, :post_cord, :prefecture_id, :city, :address, :building_name, :phone_number, :purchaser_id
 
   with_options presence: true do
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :address
-    validates :item_id
-    validates :user_id
   end
 
-  validates :post_cord, presence: true, format: { with: /\A\d{3}[-]\d{4}\z/ }
+  validates :post_cord, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   validates :phone_number, presence: true, format: { with:/\A\d{10}$|^\d{11}\z/}
 
   def save

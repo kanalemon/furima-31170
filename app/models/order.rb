@@ -9,11 +9,11 @@ class Order
     validates :token
   end
 
-  validates :post_cord, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-  validates :phone_number, presence: true, format: { with:/\A\d{10}$|^\d{11}\z/}
+  validates :post_cord, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :phone_number, presence: true, format: { with: /\A\d{10}$|^\d{11}\z/ }
 
   def save
     purchaser = Purchaser.create!(item_id: item_id, user_id: user_id)
-    Address.create!(post_cord: post_cord, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchaser_id: purchaser.id )
+    Address.create!(post_cord: post_cord, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchaser_id: purchaser.id)
   end
 end

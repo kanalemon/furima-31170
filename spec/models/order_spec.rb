@@ -17,7 +17,7 @@ RSpec.describe Order, type: :model do
     it 'post_cordが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
       @order.post_cord = '1234567'
       @order.valid?
-      expect(@order.errors.full_messages).to include("Post cord is invalid. Include hyphen(-)")
+      expect(@order.errors.full_messages).to include('Post cord is invalid. Include hyphen(-)')
     end
     it 'prefectureを選択していないと保存できないこと' do
       @order.prefecture_id = 0
@@ -46,9 +46,9 @@ RSpec.describe Order, type: :model do
     it 'phone_numberが12桁だと保存できないこと' do
       @order.phone_number = '090000000000'
       @order.valid?
-      expect(@order.errors.full_messages).to include("Phone number is invalid")
+      expect(@order.errors.full_messages).to include('Phone number is invalid')
     end
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @order.token = ''
       @order.valid?
       expect(@order.errors.full_messages).to include("Token can't be blank")

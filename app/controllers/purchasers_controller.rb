@@ -1,20 +1,17 @@
 class PurchasersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
-    if @item.purchaser != nil
+    if @item.purchaser != nil || current_user.id == @item.user_id
       redirect_to root_path
-    elsif current_user.id != @item.user_id
+    else 
       @order = Order.new
-    else
-      redirect_to root_path
     end
   end
 
   def create
     @order = Order.new(purchaser_params)
-    @item = Item.find(params[:item_id])
     if @order.valid?
       pay_item
       @order.save
@@ -27,6 +24,10 @@ class PurchasersController < ApplicationController
   private
   def purchaser_params
     params.require(:order).permit(:post_cord, :prefecture_id, :city, :address, :building_name, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
